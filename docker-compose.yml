@@ -1,0 +1,20 @@
+version: "3"
+services:
+  job-manager-api:
+    build: "./job-manager-api"
+    depends_on:
+      - job-manager-db
+    environment:
+      - DB_URI=mysql://root:j0bM4n4g3r&&@job-manager-db/job_manager?charset=UTF8
+    ports:
+      - 8800:8800
+    volumes:
+      - "./job-manager-api:/opt/app"
+
+  job-manager-db:
+    environment:
+      MYSQL_ROOT_PASSWORD: j0bM4n4g3r&&
+      MYSQL_DATABASE: job_manager
+    image: mysql:8
+    ports:
+      - 0.0.0.0:8900:3306
