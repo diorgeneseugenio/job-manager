@@ -1,5 +1,14 @@
 version: "3"
 services:
+  job-manager-api-gateway:
+    build: "./job-manager-api-gateway"
+    depends_on:
+      - job-manager-api
+    ports:
+      - 8700:8700
+    volumes:
+      - "./job-manager-api-gateway:/opt/app"
+
   job-manager-api:
     build: "./job-manager-api"
     depends_on:
