@@ -21,6 +21,7 @@ const typeDefs = gql`
     skills: String
     allowRemote: Boolean!
     ended: Boolean!
+    company: Company
   }
 
   type Mutation {
@@ -42,11 +43,37 @@ const typeDefs = gql`
     ): Boolean!
 
     deleteCompany(id: ID!): Boolean!
+
+    createJob(
+      companyId: ID
+      title: String!
+      description: String!
+      salary: String!
+      benefits: String
+      skills: String
+      allowRemote: Boolean!
+    ): Job!
+
+    updateJob(
+      id: ID!
+      companyId: ID
+      title: String
+      description: String
+      salary: Float
+      benefits: String
+      skills: String
+      allowRemote: Boolean
+      ended: Boolean
+    ): Boolean!
+
+    deleteJob(id: ID!): Boolean!
   }
 
   type Query {
     fetchAllCompanies: [Company]
     fetchCompany(id: ID!): Company
+    fetchAllJobs: [Job]
+    fetchJob(id: ID!): Job
   }
 `;
 
