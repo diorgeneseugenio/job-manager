@@ -26,7 +26,7 @@ module.exports.up = (queryInterface, DataTypes) => {
         allowNull: false,
       },
       salary: {
-        type: DataTypes.DECIMAL,
+        type: DataTypes.DECIMAL(10, 2),
         allowNull: false,
       },
       benefits: {

@@ -9,6 +9,8 @@ const typeDefs = gql`
     city: String!
     state: String!
     jobs: [Job]
+    createdAt: String
+    updatedAt: String
   }
 
   type Job {
@@ -22,6 +24,8 @@ const typeDefs = gql`
     allowRemote: Boolean!
     ended: Boolean!
     company: Company
+    createdAt: String
+    updatedAt: String
   }
 
   type Mutation {
@@ -45,7 +49,7 @@ const typeDefs = gql`
     deleteCompany(id: ID!): Boolean!
 
     createJob(
-      companyId: ID
+      companyId: ID!
       title: String!
       description: String!
       salary: String!
