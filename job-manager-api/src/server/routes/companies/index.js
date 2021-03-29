@@ -1,10 +1,11 @@
-import { Company } from "#root/db/models";
-import { paramsValidator } from "./utils";
-import { isEmpty } from "lodash";
+import { Company } from "#root/db/models/Company";
+import { paramsValidator, filterValues } from "./utils";
 
 const setupRoutesCompanies = (app) => {
   app.get("/companies", async (req, res, next) => {
-    const companies = await Company.findAll();
+    const companies = await Company.findAll({
+      include: ["jobs"],
+    });
     return res.json(companies);
   });
 
@@ -30,7 +31,9 @@ const setupRoutesCompanies = (app) => {
 
   app.get("/companies/:id", async (req, res, next) => {
     try {
-      const companies = await Company.findByPk(req.params.id);
+      const companies = await Company.findByPk(req.params.id, {
+        include: ["jobs"],
+      });
 
       if (!companies) return next(new Error("Empresa não encontrada"));
 
@@ -54,14 +57,7 @@ const setupRoutesCompanies = (app) => {
 
   app.put("/companies/:id", async (req, res, next) => {
     try {
-      let newData = {};
-
-      if (!isEmpty(req.body.name)) newData["name"] = req.body.name;
-      if (!isEmpty(req.body.logo)) newData["logo"] = req.body.logo;
-      if (!isEmpty(req.body.aboutDescription))
-        newData["aboutDescription"] = req.body.aboutDescription;
-      if (!isEmpty(req.body.state)) newData["state"] = req.body.state;
-      if (!isEmpty(req.body.city)) newData["city"] = req.body.city;
+      let newData = filterValues(req.body);
 
       const company = await Company.update(newData, {
         where: { id: req.params.id },

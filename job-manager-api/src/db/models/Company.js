@@ -1,6 +1,7 @@
 import { DataTypes, Model } from "sequelize";
 
-import sequelize from "./connection";
+import sequelize from "../connection";
+import { Job } from "./Job";
 
 export class Company extends Model {}
 Company.init(
@@ -28,3 +29,13 @@ Company.init(
   },
   { modelName: "company", sequelize }
 );
+
+Company.hasMany(Job, {
+  as: "jobs",
+  foreignKey: "companyId",
+});
+
+Job.belongsTo(Company, {
+  as: "company",
+  foreignKey: "companyId",
+});

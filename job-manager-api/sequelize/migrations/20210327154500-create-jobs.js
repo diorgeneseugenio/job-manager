@@ -10,8 +10,12 @@ module.exports.up = (queryInterface, DataTypes) => {
       },
       companyId: {
         type: DataTypes.INTEGER.UNSIGNED,
-        allowNull: false,
-        required: true,
+        references: {
+          model: "companies",
+          key: "id",
+        },
+        onUpdate: "CASCADE",
+        onDelete: "SET NULL",
       },
       title: {
         type: DataTypes.STRING,
@@ -27,13 +31,15 @@ module.exports.up = (queryInterface, DataTypes) => {
       },
       benefits: {
         type: DataTypes.STRING,
-        allowNull: false,
       },
       skills: {
         type: DataTypes.STRING,
-        allowNull: false,
       },
       allowRemote: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+      },
+      ended: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
       },
