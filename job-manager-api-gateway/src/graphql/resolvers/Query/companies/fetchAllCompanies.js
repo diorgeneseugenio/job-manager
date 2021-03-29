@@ -1,7 +1,7 @@
 import CompaniesApi from "#root/adapters/companies";
 
-const companiesResolver = async () => {
+const fetchAllCompaniesResolver = async () => {
   return await CompaniesApi.fetchAllCompanies();
 };
 
-export default companiesResolver;
+export default fetchAllCompaniesResolver;

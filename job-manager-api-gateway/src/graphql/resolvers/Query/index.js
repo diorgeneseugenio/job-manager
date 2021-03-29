@@ -1,1 +1,2 @@
-export { default as companies } from "./companies";
+export { default as fetchAllCompanies } from "./companies/fetchAllCompanies";
+export { default as fetchCompany } from "./companies/fetchCompany";

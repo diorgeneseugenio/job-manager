@@ -18,10 +18,22 @@ const typeDefs = gql`
       city: String!
       state: String!
     ): Company!
+
+    updateCompany(
+      id: ID!
+      logo: String
+      name: String
+      aboutDescription: String
+      city: String
+      state: String
+    ): Boolean!
+
+    deleteCompany(id: ID!): Boolean!
   }
 
   type Query {
-    companies: [Company!]!
+    fetchAllCompanies: [Company]
+    fetchCompany(id: ID!): Company
   }
 `;
 
