@@ -71,6 +71,23 @@ const setupRoutesJobs = (app) => {
       return next(e);
     }
   });
+
+  app.get("/jobs/filterByCompany/:companyId", async (req, res, next) => {
+    try {
+      const jobs = await Job.findAll({
+        where: { companyId: req.params.companyId },
+        order: ["updatedAt", "title"],
+        include: ["company"],
+      });
+
+      if (!jobs)
+        return next(new Error("Nenhuma vaga encontrada para esta empresa"));
+
+      return res.json(jobs);
+    } catch (e) {
+      return next(e);
+    }
+  });
 };
 
 export default setupRoutesJobs;

@@ -78,6 +78,7 @@ const typeDefs = gql`
     fetchCompany(id: ID!): Company
     fetchAllJobs: [Job]
     fetchJob(id: ID!): Job
+    filterByCompany(companyId: ID!): [Job]
   }
 `;
 

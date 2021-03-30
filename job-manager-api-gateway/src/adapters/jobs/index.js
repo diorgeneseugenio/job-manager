@@ -35,7 +35,6 @@ export default class JobsApi {
         },
       })
       .json();
-    console.log("!!!!!", body);
     return body;
   }
 
@@ -80,5 +79,12 @@ export default class JobsApi {
     } catch (e) {
       throw new Error(`Erro ao deletar a vaga ${e}`);
     }
+  }
+
+  static async filterByCompany(companyId) {
+    const body = await got
+      .get(`${JOBS_API_URI}/jobs/filterByCompany/${companyId}`)
+      .json();
+    return body;
   }
 }
