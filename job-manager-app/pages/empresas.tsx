@@ -2,7 +2,7 @@ import { ApolloProvider } from "@apollo/client";
 import { NoSsr } from "@material-ui/core";
 
 import Layout from "../components/Layout";
-import CompanyList from "../components/Company/List";
+import Company from "../components/Company";
 import graphqlClient from "../api/graphqlClient";
 
 const Page = () => {
@@ -10,7 +10,7 @@ const Page = () => {
     <NoSsr>
       <Layout>
         <ApolloProvider client={graphqlClient}>
-          <CompanyList />
+          <Company />
         </ApolloProvider>
       </Layout>
     </NoSsr>

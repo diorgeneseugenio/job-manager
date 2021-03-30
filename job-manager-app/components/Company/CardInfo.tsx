@@ -9,7 +9,7 @@ import {
   Typography,
 } from "@material-ui/core";
 
-import { Company } from "../../../types/company";
+import { Company } from "../../types/company";
 
 const useStyles = makeStyles(({ spacing }) => ({
   card: {
@@ -26,12 +26,19 @@ const useStyles = makeStyles(({ spacing }) => ({
 
 interface OwnProps {
   company: Company;
+  setCompanyToUpdate: React.Dispatch<React.SetStateAction<Company>>;
+  onUpdate(): void;
 }
 
 const CardInfo = (props: OwnProps) => {
-  const { company } = props;
+  const { company, setCompanyToUpdate, onUpdate } = props;
 
   const classes = useStyles();
+
+  const updateHandler = async () => {
+    await setCompanyToUpdate(company);
+    onUpdate();
+  };
 
   return (
     <Card
@@ -56,7 +63,7 @@ const CardInfo = (props: OwnProps) => {
           root: classes.cardActions,
         }}
       >
-        <Button variant="outlined" color="primary">
+        <Button variant="outlined" color="primary" onClick={updateHandler}>
           Editar
         </Button>
         <Button variant="outlined">Ver Vagas</Button>
