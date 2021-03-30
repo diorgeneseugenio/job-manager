@@ -1,10 +1,11 @@
 import React from "react";
-import { truncate } from "lodash";
+import { truncate, isEmpty } from "lodash";
 import {
   Button,
   Card,
   CardActions,
   CardContent,
+  Chip,
   makeStyles,
   Typography,
 } from "@material-ui/core";
@@ -16,8 +17,22 @@ const useStyles = makeStyles(({ spacing }) => ({
     padding: spacing(2),
     display: "flex",
     flexDirection: "column",
-    minHeight: "300px",
-    maxHeight: "300px",
+    minHeight: "400px",
+    maxHeight: "400px",
+    "&:hover, &:focus": {
+      boxShadow: "0px 0px 6px 0px rgb(0 62 208 / 50%)",
+      cursor: "pointer",
+    },
+  },
+  company: {
+    marginBottom: spacing(2),
+  },
+  optionalFields: {
+    marginTop: spacing(3),
+  },
+  benefits: {
+    marginLeft: spacing(0.5),
+    marginRight: spacing(0.5),
   },
   cardActions: {
     marginTop: "auto",
@@ -41,12 +56,48 @@ const CardInfo = (props: OwnProps) => {
       }}
     >
       <CardContent>
-        <Typography variant="h4" gutterBottom>
-          {job.title}
+        <Typography variant="h5">{job.title}</Typography>
+        <Typography
+          className={classes.company}
+          variant="caption"
+          display="block"
+          gutterBottom
+        >
+          {job.company.name}
         </Typography>
-        <Typography variant="subtitle1" gutterBottom>
-          {truncate(job.description, { length: 250 })}
+        <Typography variant="body2" color="textSecondary" gutterBottom>
+          {truncate(job.description, { length: 280 })}
         </Typography>
+        {(!isEmpty(job.benefits) || !isEmpty(job.skills)) && (
+          <div className={classes.optionalFields}>
+            <Typography variant="caption" display="block" gutterBottom>
+              Benefícios:
+              {!isEmpty(job.benefits) &&
+                job.benefits
+                  .split(";")
+                  .map((benefit) => (
+                    <Chip
+                      className={classes.benefits}
+                      label={benefit}
+                      size="small"
+                    />
+                  ))}
+            </Typography>
+            <Typography variant="caption" display="block" gutterBottom>
+              Requisitos:
+              {!isEmpty(job.skills) &&
+                job.skills
+                  .split(";")
+                  .map((skill) => (
+                    <Chip
+                      className={classes.benefits}
+                      label={skill}
+                      size="small"
+                    />
+                  ))}
+            </Typography>
+          </div>
+        )}
       </CardContent>
       <CardActions
         classes={{

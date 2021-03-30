@@ -38,7 +38,7 @@ const JobList = () => {
           </Typography>
         )}
         {jobs.map((job, index) => (
-          <Grid item sm={12} md={4} key={index}>
+          <Grid item sm={12} md={3} key={index}>
             <CardInfo job={job} />
           </Grid>
         ))}
