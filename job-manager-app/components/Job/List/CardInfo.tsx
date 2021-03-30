@@ -9,7 +9,7 @@ import {
   Typography,
 } from "@material-ui/core";
 
-import { Company } from "../../types";
+import { Job } from "../../../types";
 
 const useStyles = makeStyles(({ spacing }) => ({
   card: {
@@ -25,20 +25,13 @@ const useStyles = makeStyles(({ spacing }) => ({
 }));
 
 interface OwnProps {
-  company: Company;
-  setCompanyToUpdate: React.Dispatch<React.SetStateAction<Company>>;
-  onUpdate(): void;
+  job: Job;
 }
 
 const CardInfo = (props: OwnProps) => {
-  const { company, setCompanyToUpdate, onUpdate } = props;
+  const { job } = props;
 
   const classes = useStyles();
-
-  const updateHandler = async () => {
-    await setCompanyToUpdate(company);
-    onUpdate();
-  };
 
   return (
     <Card
@@ -49,13 +42,10 @@ const CardInfo = (props: OwnProps) => {
     >
       <CardContent>
         <Typography variant="h4" gutterBottom>
-          {company.name}
+          {job.title}
         </Typography>
         <Typography variant="subtitle1" gutterBottom>
-          {truncate(company.aboutDescription, { length: 250 })}
-        </Typography>
-        <Typography variant="caption" color="textSecondary" gutterBottom>
-          {company.state} - {company.city}
+          {truncate(job.description, { length: 250 })}
         </Typography>
       </CardContent>
       <CardActions
@@ -63,9 +53,6 @@ const CardInfo = (props: OwnProps) => {
           root: classes.cardActions,
         }}
       >
-        <Button variant="outlined" color="primary" onClick={updateHandler}>
-          Editar
-        </Button>
         <Button variant="outlined">Ver Vagas</Button>
       </CardActions>
     </Card>

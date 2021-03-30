@@ -10,7 +10,7 @@ import {
 } from "@material-ui/core";
 import { isEmpty } from "lodash";
 
-import { Company } from "../../../types/company";
+import { Company } from "../../../types";
 import FormFields from "./FormFields";
 import {
   CREATE_COMPANY,

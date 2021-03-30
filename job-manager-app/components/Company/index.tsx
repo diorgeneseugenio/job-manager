@@ -3,8 +3,8 @@ import { useQuery } from "@apollo/client";
 import { Grid, Typography } from "@material-ui/core";
 
 import { Company } from "../../types/company";
+import Header from "../Utils/Header";
 import CardInfo from "./CardInfo";
-import Header from "./Header";
 import Dialog from "./Dialog/";
 
 import { FETCH_COMPANIES } from "../../api/companies/queries";
@@ -35,7 +35,7 @@ const CompanyList = () => {
 
   return (
     <React.Fragment>
-      <Header onAdd={onAdd} />
+      <Header onAdd={onAdd} hasAddButton paths={["Empresas", "Listagem"]} />
       <Grid
         container
         direction="row"

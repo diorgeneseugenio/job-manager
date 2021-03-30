@@ -1,13 +1,12 @@
 version: "3"
 services:
-  job-manager-api-gateway:
-    build: "./job-manager-api-gateway"
-    depends_on:
-      - job-manager-api
+  job-manager-db:
+    environment:
+      MYSQL_ROOT_PASSWORD: j0bM4n4g3r&&
+      MYSQL_DATABASE: job_manager
+    image: mysql:8
     ports:
-      - 8700:8700
-    volumes:
-      - "./job-manager-api-gateway:/opt/app"
+      - 0.0.0.0:8900:3306
 
   job-manager-api:
     build: "./job-manager-api"
@@ -20,10 +19,22 @@ services:
     volumes:
       - "./job-manager-api:/opt/app"
 
-  job-manager-db:
-    environment:
-      MYSQL_ROOT_PASSWORD: j0bM4n4g3r&&
-      MYSQL_DATABASE: job_manager
-    image: mysql:8
+  job-manager-api-gateway:
+    build: "./job-manager-api-gateway"
+    depends_on:
+      - job-manager-api
     ports:
-      - 0.0.0.0:8900:3306
+      - 8700:8700
+    volumes:
+      - "./job-manager-api-gateway:/opt/app"
+
+  job-manager-app:
+    build: "./job-manager-app"
+    depends_on:
+      - job-manager-api-gateway
+    environment:
+      - SERVICES_URI=https://job-manager-api-gateway:8700
+    ports:
+      - 8600:3000
+    volumes:
+      - "./job-manager-app:/usr/src"
