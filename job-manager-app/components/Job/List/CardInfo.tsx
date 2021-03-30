@@ -75,11 +75,12 @@ const CardInfo = (props: OwnProps) => {
               {!isEmpty(job.benefits) &&
                 job.benefits
                   .split(";")
-                  .map((benefit) => (
+                  .map((benefit, index) => (
                     <Chip
                       className={classes.benefits}
                       label={benefit}
                       size="small"
+                      key={index}
                     />
                   ))}
             </Typography>
@@ -88,11 +89,12 @@ const CardInfo = (props: OwnProps) => {
               {!isEmpty(job.skills) &&
                 job.skills
                   .split(";")
-                  .map((skill) => (
+                  .map((skill, index) => (
                     <Chip
                       className={classes.benefits}
                       label={skill}
                       size="small"
+                      key={index}
                     />
                   ))}
             </Typography>
