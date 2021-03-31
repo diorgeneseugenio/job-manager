@@ -45,3 +45,24 @@ export const FILTER_BY_COMPANY = gql`
     }
   }
 `;
+
+export const FETCH_JOB = gql`
+  query fetchJob($id: ID!) {
+    fetchJob(id: $id) {
+      id
+      companyId
+      title
+      description
+      salary
+      benefits
+      skills
+      allowRemote
+      ended
+      company {
+        name
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;

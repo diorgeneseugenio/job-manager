@@ -17,5 +17,4 @@ const Page = () => {
   );
 };
 
-Page.Layout = Layout;
 export default Page;

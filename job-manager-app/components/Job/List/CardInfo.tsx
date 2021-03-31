@@ -10,6 +10,7 @@ import {
   Tooltip,
 } from "@material-ui/core";
 import ComputerIcon from "@material-ui/icons/Computer";
+import { useRouter } from "next/router";
 
 import { Job } from "../../../types";
 
@@ -42,12 +43,15 @@ const CardInfo = (props: OwnProps) => {
 
   const classes = useStyles();
 
+  const router = useRouter();
+
   return (
     <Card
       variant="outlined"
       classes={{
         root: classes.card,
       }}
+      onClick={() => router.push(`/vagas/detalhar/${job.id}`)}
     >
       <CardContent>
         <Typography variant="h5">
