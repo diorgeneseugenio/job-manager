@@ -59,7 +59,7 @@ const JobCreate = () => {
           companyId: job.companyId,
           title: job.title,
           description: job.description,
-          salary: job.salary,
+          salary: job.salary.toString(),
           benefits: job.benefits,
           skills: job.skills,
           allowRemote: job.allowRemote,

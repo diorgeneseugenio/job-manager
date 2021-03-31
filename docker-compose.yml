@@ -32,9 +32,7 @@ services:
     build: "./job-manager-app"
     depends_on:
       - job-manager-api-gateway
-    environment:
-      - SERVICES_URI=https://job-manager-api-gateway:8700
     ports:
       - 8600:3000
     volumes:
-      - "./job-manager-app:/usr/src"
+      - "./job-manager-app:/opt/app"
