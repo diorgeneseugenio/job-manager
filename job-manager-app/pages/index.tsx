@@ -1,7 +1,16 @@
-import { Grid } from "@material-ui/core";
+import { NoSsr } from "@material-ui/core";
 
-const Home = () => {
-  return <Grid>Aqui</Grid>;
+import Layout from "../components/Layout";
+import Home from "../components/Home";
+
+const Page = () => {
+  return (
+    <NoSsr>
+      <Layout>
+        <Home />
+      </Layout>
+    </NoSsr>
+  );
 };
 
-export default Home;
+export default Page;
