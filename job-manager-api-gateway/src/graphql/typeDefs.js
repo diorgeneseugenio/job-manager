@@ -63,7 +63,7 @@ const typeDefs = gql`
       companyId: ID
       title: String
       description: String
-      salary: Float
+      salary: String
       benefits: String
       skills: String
       allowRemote: Boolean

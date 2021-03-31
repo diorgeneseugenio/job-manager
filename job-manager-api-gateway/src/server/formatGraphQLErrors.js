@@ -1,8 +1,7 @@
 import { get } from "lodash";
 
-const formatGraphQlErrors = (error) => {
-  const errorDetails = get(error, "originalError.reponse.body");
-
+const formatGraphQLErrors = (error) => {
+  const errorDetails = get(error, "originalError.response.body");
   try {
     if (errorDetails) return JSON.parse(errorDetails);
   } catch (e) {}
@@ -10,4 +9,4 @@ const formatGraphQlErrors = (error) => {
   return null;
 };
 
-export default formatGraphQlErrors;
+export default formatGraphQLErrors;

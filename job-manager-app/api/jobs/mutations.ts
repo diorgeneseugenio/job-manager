@@ -25,20 +25,34 @@ export const CREATE_JOB = gql`
   }
 `;
 
-export const UPDATE_COMPANY = gql`
-  mutation UpdateCompany(
+export const UPDATE_JOB = gql`
+  mutation UpdateJob(
     $id: ID!
-    $name: String
-    $aboutDescription: String
-    $state: String
-    $city: String
+    $companyId: ID
+    $title: String
+    $description: String
+    $salary: String
+    $benefits: String
+    $skills: String
+    $allowRemote: Boolean
+    $ended: Boolean
   ) {
-    updateCompany(
+    updateJob(
       id: $id
-      name: $name
-      aboutDescription: $aboutDescription
-      state: $state
-      city: $city
+      companyId: $companyId
+      title: $title
+      description: $description
+      salary: $salary
+      benefits: $benefits
+      skills: $skills
+      allowRemote: $allowRemote
+      ended: $ended
     )
+  }
+`;
+
+export const DELETE_JOB = gql`
+  mutation DeleteJob($id: ID!) {
+    deleteJob(id: $id)
   }
 `;

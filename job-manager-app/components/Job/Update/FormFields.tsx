@@ -10,6 +10,7 @@ import {
 } from "@material-ui/core";
 import ChipInput from "material-ui-chip-input";
 import CurrencyTextField from "@unicef/material-ui-currency-textfield";
+import { isEmpty } from "lodash";
 
 import { Job, Company } from "../../../types";
 
@@ -31,8 +32,8 @@ interface OwnProps {
 const FormFields = (props: OwnProps) => {
   const { job, companies, setParameter } = props;
 
-  const [benefitsMock, setBenefitsMock] = useState<string[]>([]);
-  const [skillsMock, setSkillsMock] = useState<string[]>([]);
+  const [benefitsMock, setBenefitsMock] = useState<string[]>();
+  const [skillsMock, setSkillsMock] = useState<string[]>();
 
   const classes = useStyles();
 
@@ -63,6 +64,11 @@ const FormFields = (props: OwnProps) => {
     setSkillsMock(newSkills);
     setParameter(newSkills.join(";"), "skills");
   };
+
+  React.useEffect(() => {
+    setBenefitsMock(!isEmpty(job.benefits) ? job.benefits.split(";") : []);
+    setSkillsMock(!isEmpty(job.skills) ? job.skills.split(";") : []);
+  }, [job]);
 
   return (
     <React.Fragment>
