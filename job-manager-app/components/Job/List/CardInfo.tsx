@@ -10,7 +10,7 @@ import {
   Tooltip,
 } from "@material-ui/core";
 import ComputerIcon from "@material-ui/icons/Computer";
-import { useRouter } from "next/router";
+import Router from "next/router";
 import { useMutation } from "@apollo/client";
 
 import { Job } from "../../../types";
@@ -47,8 +47,6 @@ const CardInfo = (props: OwnProps) => {
 
   const classes = useStyles();
 
-  const router = useRouter();
-
   const [openConfirmation, setOpenConfirmation] = useState(false);
 
   const [deleteJob] = useMutation(DELETE_JOB, {
@@ -67,7 +65,7 @@ const CardInfo = (props: OwnProps) => {
 
   const onEdit = (event: MouseEvent) => {
     event.stopPropagation();
-    router.push(`/vagas/editar/${job.id}`);
+    Router.push(`/vagas/editar/${job.id}`);
   };
 
   return (
@@ -77,7 +75,8 @@ const CardInfo = (props: OwnProps) => {
         classes={{
           root: classes.card,
         }}
-        onClick={() => router.push(`/vagas/detalhar/${job.id}`)}
+        onClick={() => Router.push(`/vagas/detalhar/${job.id}`)}
+        data-testid="card-job"
       >
         <CardContent>
           <Typography variant="h5">
@@ -105,7 +104,7 @@ const CardInfo = (props: OwnProps) => {
             root: classes.cardActions,
           }}
         >
-          <Button variant="outlined" onClick={onEdit}>
+          <Button variant="outlined" onClick={onEdit} data-testid="btn-edit">
             Editar
           </Button>
           <Button color="secondary" onClick={openConfirmationDelete}>

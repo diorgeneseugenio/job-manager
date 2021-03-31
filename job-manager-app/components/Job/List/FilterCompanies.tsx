@@ -41,6 +41,16 @@ const FilterCompanies = (props: OwnProps) => {
           variant="outlined"
           required
           fullWidth
+          SelectProps={{
+            SelectDisplayProps: {
+              /*
+               * @types for SelectDisplayProps does not accept data-testid,
+               * but it renders on the component anyway
+               */
+              // @ts-ignore
+              "data-testid": "filter-by-company",
+            },
+          }}
         >
           <MenuItem value="0">Selecione uma empresa</MenuItem>
           {companies.map(({ id, name }) => (
