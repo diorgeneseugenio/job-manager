@@ -1,0 +1,14 @@
+setup:
+  addons:
+    - plan: heroku-cleardb
+      as: DATABASE
+  config:
+    MYSQL_ROOT_PASSWORD: j0bM4n4g3r&&
+    MYSQL_DATABASE: job_manager
+build:
+  docker:
+    app: job-manager-app/dockerfile
+    api: job-manager-api/dockerfile
+    api-gateway: job-manager-api-gateway/dockerfile
+  config: 
+  DB_URI=mysql://root:j0bM4n4g3r&&@job-manager-db/job_manager?charset=UTF8

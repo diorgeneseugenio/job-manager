@@ -104,6 +104,7 @@ exports[`JobList handles problem to load 1`] = `
               aria-haspopup="listbox"
               aria-labelledby="companyId-label companyId"
               class="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input"
+              data-testid="filter-by-company"
               id="companyId"
               role="button"
               tabindex="0"
@@ -261,6 +262,7 @@ exports[`JobList renders correctly 1`] = `
               aria-haspopup="listbox"
               aria-labelledby="companyId-label companyId"
               class="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input"
+              data-testid="filter-by-company"
               id="companyId"
               role="button"
               tabindex="0"
@@ -306,6 +308,7 @@ exports[`JobList renders correctly 1`] = `
     >
       <div
         class="MuiPaper-root MuiCard-root makeStyles-card-8 MuiPaper-outlined MuiPaper-rounded"
+        data-testid="card-job"
       >
         <div
           class="MuiCardContent-root"
@@ -343,6 +346,7 @@ exports[`JobList renders correctly 1`] = `
         >
           <button
             class="MuiButtonBase-root MuiButton-root MuiButton-outlined"
+            data-testid="btn-edit"
             tabindex="0"
             type="button"
           >

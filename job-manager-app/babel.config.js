@@ -34,7 +34,7 @@ module.exports = (api) => {
 
   api.cache(true);
   return {
-    presets: ["next/babel", "@zeit/next-typescript/babel"],
+    presets: ["next/babel"],
     env: {
       production: {
         plugins: [["react-remove-properties", { properties: ["data-testid"] }]],
